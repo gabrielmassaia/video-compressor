@@ -4,9 +4,15 @@ Programa desktop simples (Python + tkinter) para compactar vídeos usando FFmpeg
 
 ## Funcionalidades
 
-- Seleção do vídeo de entrada e da pasta de saída.
-- Nível de qualidade/compressão via CRF (Alta qualidade / Balanceado / Máxima compressão).
+- Seleção do vídeo de entrada, da pasta de saída e do nome do arquivo final.
+- Nível de qualidade/compressão (Alta qualidade / Balanceado / Máxima compressão).
 - Escolha de codec de saída: H.264 (`libx264`) ou H.265 (`libx265`).
+- **Aceleração por GPU:** detecta automaticamente a GPU instalada (NVIDIA/AMD/Intel)
+  cruzando com o que o FFmpeg instalado suporta, e usa o encoder de hardware
+  correspondente (NVENC/AMF/Quick Sync) tanto para decodificar quanto para
+  codificar o vídeo, quando disponível. Pode ser desligado a qualquer momento
+  para usar a codificação por CPU (`libx264`/`libx265`).
+- Painel "Sistema detectado" mostrando núcleos de CPU, RAM total e GPU disponível.
 - Compressão roda em thread separada, com barra de progresso indeterminada e status.
 - Mostra tamanho do arquivo original vs. final e a % de redução ao concluir.
 - Verifica se o FFmpeg está no PATH ao abrir e orienta a instalação se não estiver.
